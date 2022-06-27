@@ -20,7 +20,7 @@ RUN npm run build
 
 RUN rm package.json
 
-COPY ./dist .
+# COPY ./dist .
 
 # EXPOSE 7777
 
