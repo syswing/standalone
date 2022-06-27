@@ -6,21 +6,21 @@ WORKDIR /standalone
 
 COPY ["package.json", "./"]
 
-COPY ["tsconfig.build.json", "./"]
+# COPY ["tsconfig.build.json", "./"]
 
-RUN npm install glob rimraf
+# RUN npm install glob rimraf
 
-RUN npm install -g @nestjs/cli
+# RUN npm install -g @nestjs/cli
 
-RUN npm install --only=development
+# RUN npm install --only=development
 
 RUN npm install
 
-RUN npm run build
+# RUN npm run build
 
 RUN rm package.json
 
-# COPY ./dist .
+COPY ./dist .
 
 # EXPOSE 7777
 
