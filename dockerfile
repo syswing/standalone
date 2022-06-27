@@ -24,4 +24,4 @@ RUN rm package.json
 
 # EXPOSE 7777
 
-CMD ["node", "main.js"]
+CMD ["node", "./dist/main.js"]
