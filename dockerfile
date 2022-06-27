@@ -14,7 +14,7 @@ RUN npm install --only=development
 
 RUN npm install
 
-RUN npm run build
+# RUN npm run build
 
 RUN rm package.json
 
