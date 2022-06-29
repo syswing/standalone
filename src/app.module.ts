@@ -17,7 +17,6 @@ import { AdventureController } from './modules/adventure/adventure.controller';
     //   driver:ApolloDriver
     // }),
     ApiModule,
-    
   ],
   controllers: [AppController,],
   providers: [AppService, CatsService],
