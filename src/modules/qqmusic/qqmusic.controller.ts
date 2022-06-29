@@ -16,7 +16,7 @@ export class QQMusicController {
 
 	@Get('getUserCookie')
 	@ApiQuery({ name:'qqNo',type:'string',required:true})
-	getUserCookie(@Req() request,@Query() query, @Res({ passthrough: true }) response:Response) {
+	getUserCookie(@Req() request,@Query() query, @Res({ passthrough: true }) response) {
 		return this.QQMusicService.getUserCookie(query.qqNo,request.cookies,response)
 	}
 	
