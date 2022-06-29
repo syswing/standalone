@@ -14,11 +14,12 @@ RUN npm install -g @nestjs/cli
 
 RUN npm install --production=true
 
+COPY . .
+
 RUN npm run build
 
 RUN rm package.json
 
-COPY . .
 
 # EXPOSE 7777
 
