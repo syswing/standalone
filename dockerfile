@@ -4,7 +4,9 @@ ENV NODE_ENV=production
 
 WORKDIR /standalone
 
-COPY ["package.json", "."]
+COPY . .
+
+# COPY ["package.json", "."]
 
 # COPY ["tsconfig.build.json", "./"]
 
@@ -14,14 +16,11 @@ RUN npm install -g @nestjs/cli
 
 RUN npm install -g webpack
 
+RUN npm install -g webpack-cli
+
 RUN npm install --production=true
 
-COPY . .
-
 RUN npm run build
-
-RUN rm package.json
-
 
 # EXPOSE 7777
 
