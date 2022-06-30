@@ -22,6 +22,6 @@ RUN npm install --production=true
 
 RUN npm run build
 
-# EXPOSE 7777
+EXPOSE 3000
 
 CMD ["node", "./dist/main.js"]
