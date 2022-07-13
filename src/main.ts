@@ -20,6 +20,8 @@ async function bootstrap() {
     origin: [
       'http://localhost:4200',
       'http://localhost:8081',
+      'http://111.231.115.242:3000',
+      'http://111.231.115.242:7777',
     ],
   });
   await app.listen(3000);

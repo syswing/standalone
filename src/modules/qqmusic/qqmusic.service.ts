@@ -60,7 +60,7 @@ export class QQMusicService {
 		return res.data
 	}
 	async songurl(songmid,cookies){
-		const res = await this.httpService.get(`/songurls?id=${songmid}`,{
+		const res = await this.httpService.get(`/song/urls?id=${songmid}`,{
 			headers:{
 				cookie:Object.keys(cookies).map(key => `${key}=${cookies[key]}`).join(';')
 			}
