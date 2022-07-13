@@ -23,6 +23,7 @@ async function bootstrap() {
       'http://111.231.115.242:3000',
       'http://111.231.115.242:7777',
     ],
+    credentials: true,
   });
   await app.listen(3000);
   Logger.log(`Server running on http://localhost:3000`, 'Bootstrap');
