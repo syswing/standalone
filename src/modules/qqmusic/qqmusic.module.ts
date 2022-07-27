@@ -8,7 +8,7 @@ import { HttpModule } from '@nestjs/axios';
 		useFactory: () => ({
 			timeout: 5000,
 			maxRedirects: 5,
-			baseURL:'http://172.18.0.1:3300',
+			baseURL:'http://127.0.0.1:3300',
 			withCredentials:true
 		}),
 	})],

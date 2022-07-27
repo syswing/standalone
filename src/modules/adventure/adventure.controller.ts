@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Req,Body, Query } from '@nestjs/common';
-import { ApiBody, ApiProperty, ApiQuery } from '@nestjs/swagger';
+import {  ApiQuery,ApiTags } from '@nestjs/swagger';
 import { AdventureService } from './adventure.service';
-
+@ApiTags('adventure')
 @Controller('adventure')
 export class AdventureController {
 	// private readonly adventureService:AdventureService
