@@ -57,5 +57,11 @@ export class NeteaseMusicController {
 	likelist(@Query() query){
 		return this.neteaseMusicService.likelist(query)
 	}
+	
+	@Post('song_detail')
+	@ApiQuery({ name:'ids',type:'string',required:true})
+	song_detail(@Query() query){
+		return this.neteaseMusicService.song_detail(query)
+	}
 }
 

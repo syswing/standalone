@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import * as fs from 'node:fs'
 /**
  * @params relativePath 根路径
@@ -55,6 +56,9 @@ export default async (relativePath) => {
 				fileObj["name"] = fileName;
 				fileObj["path"] = path + '/' + fileName
 				fileObj["type"] = "file";
+				fileObj['ino'] = stat.ino;
+				fileObj['create_time'] = moment(stat.birthtime).format('YYYY-MM-DD HH:mm:ss')
+				fileObj['update_time'] = moment(stat.ctime).format('YYYY-MM-DD HH:mm:ss')
 				result["childF"].push(fileObj);
 			}
 		});

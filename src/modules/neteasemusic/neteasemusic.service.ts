@@ -7,16 +7,20 @@ import {
 	playlist_detail,
 	user_playlist,
 	playlist_track_all,
-	likelist
+	likelist,
+	song_detail
 } from 'NeteaseCloudMusicApi'
 
 @Injectable()
 export class NeteaseMusicService {
+	private cookie : string;
+
 	async login_cellphone(query){
 		const result = await login_cellphone({
       phone: query.phone,
       password: query.password
     })
+		this.cookie = result.body.cookie
 		return result
 	}
 	// 获取用户详情
@@ -65,8 +69,18 @@ export class NeteaseMusicService {
 		return result
 	}
 	async likelist(query){
+		if(!this.cookie){
+			return '请先登录'
+		}
 		const result = await likelist({
-      uid:query.uid
+      uid:query.uid,
+			cookie:this.cookie
+    })
+		return result
+	}
+	async song_detail(query){
+		const result = await song_detail({
+      ids:query.ids,
     })
 		return result
 	}

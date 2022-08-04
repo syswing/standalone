@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Req,Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Req,Body, Query, UseInterceptors } from '@nestjs/common';
 import {  ApiQuery,ApiTags } from '@nestjs/swagger';
+import { ResultInterceptor } from 'src/interceptors/resultInterceptor.interceptor';
 import { AdventureService } from './adventure.service';
 @ApiTags('adventure')
 @Controller('adventure')
+@UseInterceptors(ResultInterceptor)
 export class AdventureController {
 	// private readonly adventureService:AdventureService
 	constructor(private readonly adventureService: AdventureService) {}
@@ -12,9 +14,10 @@ export class AdventureController {
 	}
 
 	@Get('md')
-	@ApiQuery({ name:'mdName',type:'string',required:true})
+	@ApiQuery({ name:'mdName',type:'string',required:false})
+	@ApiQuery({ name:'ino',type:'string',required:false})
 	md(@Query() query){
-		return this.adventureService.findAdventure(query.mdName)
+		return this.adventureService.findAdventure(query.ino,query.mdName)
 	}
 
 	@Get('read')

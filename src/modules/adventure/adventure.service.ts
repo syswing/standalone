@@ -17,11 +17,14 @@ export class AdventureService {
 		return dirList
 	}
 
-	async findAdventure(mdName){
+	async findAdventure(ino,mdName){
+		if(!ino && !mdName){
+			return {message:'必须上传 ino 或 mdName'}
+		}
 		if(!this.dirList) throw new HttpException('请先扫描', HttpStatus.INTERNAL_SERVER_ERROR);
 		const findFile = (arrList) => {
 			return arrList.map(item => {
-				if(item.type === 'file' && item.name === mdName + '.md'){
+				if(item.type === 'file' && (item.name === mdName + '.md' || item.ino == ino)){
 					return item
 				}else if(item.type === 'dir'){
 					const children = item.childD.concat(item.childF)
