@@ -3,6 +3,7 @@ import readFileTree, { DirObj } from 'src/utils/readFileTree';
 import {readFile,writeFile} from 'node:fs/promises'
 import * as MarkdownIt from 'markdown-it'
 import * as path from 'path'
+import * as toc from 'markdown-toc'
 
 const md = MarkdownIt()
 
@@ -46,8 +47,15 @@ export class AdventureService {
 				signal,
 				encoding:'utf-8'
 			});
-			const dom = md.render(result)
-			return dom
+
+			const dom = md.use(require("markdown-it-anchor")).render(result)
+
+			// 生成 tco 目录
+			const tocContent = md.render(toc(result).content)
+			return {
+				dom,
+				tocContent
+			}
 		} catch (err) {
 			console.error(err);
 		}
