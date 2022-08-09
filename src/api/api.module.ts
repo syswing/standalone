@@ -6,9 +6,10 @@ import { LoggingInterceptor } from 'src/shared/logging.interceptor';
 import { AdventureModule } from 'src/modules/adventure/adventure.module';
 import { QQMusicModule } from 'src/modules/qqmusic/qqmusic.module';
 import { NeteaseMusicModule } from 'src/modules/neteasemusic/neteasemusic.module';
+import { PictureModule } from 'src/modules/picture/picture.module';
 
 @Module({
-  imports: [CatsModule,AdventureModule,QQMusicModule,NeteaseMusicModule],
+  imports: [CatsModule,AdventureModule,QQMusicModule,NeteaseMusicModule,PictureModule],
   providers: [
     {
       provide: APP_FILTER,
@@ -19,6 +20,6 @@ import { NeteaseMusicModule } from 'src/modules/neteasemusic/neteasemusic.module
       useClass: LoggingInterceptor,
     },
   ],
-  exports: [CatsModule,AdventureModule,NeteaseMusicModule,QQMusicModule],
+  exports: [CatsModule,AdventureModule,NeteaseMusicModule,QQMusicModule,PictureModule],
 })
 export class ApiModule {}
