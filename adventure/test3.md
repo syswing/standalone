@@ -4,7 +4,6 @@
 - Desktop PWA Support
 - Autosave
 - Off Thread Markdown Compiling
-
 [TOC]
 
 ## Markdown
@@ -32,3 +31,9 @@ $ y = x^3 + 2ax^2 + b $
 阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法阿斯顿发生记得回复啊是否为u hi办法
 
 ## 测试
+
+### docker 清理镜像 
+
+```shell
+docker image prune
+```
