@@ -28,7 +28,7 @@ export class PictureController {
 
 	@Get()
 	@ApiQuery({ name:'picName',type:'string',required:true})
-	getPic(@Query() query,@Res() res: Response){
+	getPic(@Query() query,@Res() res){
 		this.pictureService.getPic(query,res)
 	}
 }
