@@ -3,8 +3,10 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
+import { ResultInterceptor } from './interceptors/resultInterceptor.interceptor';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const httpAdapter = app.getHttpAdapter();
 
   const config = new DocumentBuilder()
     .setTitle('standalone api')

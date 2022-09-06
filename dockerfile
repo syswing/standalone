@@ -13,7 +13,7 @@ COPY . .
 RUN npm install glob rimraf
 
 RUN npm install -g @nestjs/cli
-	 
+
 RUN npm install -g webpack
 
 RUN npm install -g webpack-cli

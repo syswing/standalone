@@ -64,5 +64,5 @@ export default async (relativePath) => {
 		});
 		return result;
 	}
-	return dirDFS(relativePath, 'adventure', [])
+	return dirDFS(relativePath, 'adventure', [/.json$/])
 }
