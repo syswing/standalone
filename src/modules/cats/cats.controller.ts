@@ -3,9 +3,10 @@ import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { CatsService } from './cats.service';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from 'src/guards/auth.guard';
 
-// @UseGuards(RolesGuard)
 @Controller('cats')
+@UseGuards(AuthGuard)
 export class CatsController {
 
 	private readonly catsService:CatsService

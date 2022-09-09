@@ -9,9 +9,19 @@ import { NeteaseMusicModule } from 'src/modules/neteasemusic/neteasemusic.module
 import { PictureModule } from 'src/modules/picture/picture.module';
 import { RobotModule } from 'src/modules/robot/robot.module';
 import { CommentModule } from 'src/modules/comment/comment.module';
-
+import { UserModule } from 'src/modules/user/user.module';
+const apiModules = [
+  CatsModule,
+  AdventureModule,
+  QQMusicModule,
+  NeteaseMusicModule,
+  PictureModule,
+  RobotModule,
+  CommentModule,
+  UserModule
+]
 @Module({
-  imports: [CatsModule,AdventureModule,QQMusicModule,NeteaseMusicModule,PictureModule,RobotModule,CommentModule],
+  imports: apiModules,
   providers: [
     {
       provide: APP_FILTER,
@@ -22,6 +32,6 @@ import { CommentModule } from 'src/modules/comment/comment.module';
       useClass: LoggingInterceptor,
     },
   ],
-  exports: [CatsModule,AdventureModule,NeteaseMusicModule,QQMusicModule,PictureModule,RobotModule,CommentModule],
+  exports: apiModules,
 })
 export class ApiModule {}

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
+import * as bcrypt from 'bcrypt'
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -7,6 +8,23 @@ export class User {
   @Column({ length: 500 })
   password: string;
 
-	@Column({ length: 500 })
+	@Column()
   account: string;
+
+  @Column()
+  username:string;
+
+  @Column()
+  avatar:string;
+
+  @Column()
+  email:string;
+ 
+  @Column('simple-enum', { enum: ['root', 'author', 'visitor'],default:'visitor' })
+  role: string;
+
+  @BeforeInsert() 
+  async encryptPwd() { 
+    this.password = await bcrypt.hashSync(this.password,10); 
+  } 
 }
