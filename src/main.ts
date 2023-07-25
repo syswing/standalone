@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
-import { ResultInterceptor } from './interceptors/resultInterceptor.interceptor';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const httpAdapter = app.getHttpAdapter();
@@ -19,10 +18,10 @@ async function bootstrap() {
   app.use(cookieParser())
   app.enableCors({
     origin: [
-      'http://localhost:4200',
-      'http://localhost:8081',
-      'http://111.231.115.242:3000',
-      'http://111.231.115.242:7777',
+      process.env.ENABLE_CORS_ORIGIN_1,
+      process.env.ENABLE_CORS_ORIGIN_2,
+      process.env.ENABLE_CORS_ORIGIN_3,
+      process.env.ENABLE_CORS_ORIGIN_4,
     ],
     credentials: true,
   });

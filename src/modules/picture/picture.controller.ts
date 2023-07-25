@@ -2,9 +2,11 @@ import { Controller, Get, Post, Req, Body, Query, Res, UseInterceptors, Uploaded
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { PictureService } from './picture.service'
+import { ResultInterceptor } from 'src/interceptors/resultInterceptor.interceptor';
 
 @ApiTags('picture')
 @Controller('picture')
+@UseInterceptors(ResultInterceptor)
 export class PictureController {
 	constructor(private readonly pictureService: PictureService) {}
 
@@ -23,12 +25,12 @@ export class PictureController {
   })
 	@UseInterceptors(FileInterceptor('file'))
 	upload(@UploadedFile() file: Express.Multer.File) {
-	  this.pictureService.uploadPic(file)
+	  return this.pictureService.uploadPic(file)
 	}
 
-	@Get()
+	@Get('getPic')
 	@ApiQuery({ name:'picName',type:'string',required:true})
 	getPic(@Query() query,@Res() res){
-		this.pictureService.getPic(query,res)
+		return this.pictureService.getPic(query,res)
 	}
 }

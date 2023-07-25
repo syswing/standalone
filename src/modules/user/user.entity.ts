@@ -5,19 +5,19 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
+  @Column({ length: 500,nullable:true })
   password: string;
 
-	@Column()
+	@Column({nullable:true})
   account: string;
 
-  @Column()
+  @Column({nullable:true})
   username:string;
 
-  @Column()
+  @Column({nullable:true})
   avatar:string;
 
-  @Column()
+  @Column({nullable:true})
   email:string;
  
   @Column('simple-enum', { enum: ['root', 'author', 'visitor'],default:'visitor' })

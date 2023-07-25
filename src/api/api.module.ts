@@ -10,6 +10,8 @@ import { PictureModule } from 'src/modules/picture/picture.module';
 import { RobotModule } from 'src/modules/robot/robot.module';
 import { CommentModule } from 'src/modules/comment/comment.module';
 import { UserModule } from 'src/modules/user/user.module';
+import { TagModule } from 'src/modules/tags/tag.module';
+import { BingPicModule } from 'src/modules/bingPic/bingPic.module';
 const apiModules = [
   CatsModule,
   AdventureModule,
@@ -18,7 +20,9 @@ const apiModules = [
   PictureModule,
   RobotModule,
   CommentModule,
-  UserModule
+  UserModule,
+  TagModule,
+  BingPicModule
 ]
 @Module({
   imports: apiModules,

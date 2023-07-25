@@ -12,7 +12,9 @@ export const databaseProviders = [
         username: process.env.DATABASE_USERNAME,
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_TYPE,
-        synchronize: false,
+        // 建议不开启
+        synchronize: process.env.ENABLE_SYNCHRONIZE as any,
+        // 所有entity加入
 				entities: [
 					__dirname + '/../**/*.entity{.ts,.js}',
 				]
