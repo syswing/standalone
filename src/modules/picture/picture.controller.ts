@@ -33,4 +33,12 @@ export class PictureController {
 	getPic(@Query() query,@Res() res){
 		return this.pictureService.getPic(query,res)
 	}
+	// 获取列表
+	@Get('getPicPage')
+	@ApiQuery({ name:'page',type:'string',required:true})
+	@ApiQuery({ name:'size',type:'string',required:true})
+	getPicPage(@Query() query){
+		return this.pictureService.getPicPage(query)
+	}
+
 }

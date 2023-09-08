@@ -11,23 +11,26 @@ export class PictureService {
     @Inject('PICTURE_REPOSITORY')
     private pictureRepository: Repository<Picture>,
   ) {}
+  
+  private commonUrl = './public/picture/'
+  
   async uploadPic(pic) {
     const picture = new Picture();
-    picture.path = `./pictures/${pic.originalname}`;
+    picture.path = `${this.commonUrl}${pic.originalname}`;
+    picture.name = pic.originalname
     await this.pictureRepository.save(picture);
-    await writeFile(`./pictures/${pic.originalname}`, pic.buffer);
+    await writeFile(`${this.commonUrl}${pic.originalname}`, pic.buffer);
     return '保存成功';
   }
   async getPic(query, res) {
     const pic = await this.pictureRepository.findOne({
       where: {
-        path: `./pictures/${query.picName}`,
+        path: `${this.commonUrl}${query.picName}`,
       },
     });
     if (pic) {
-			console.log('createReadStream')
       const file = fs.createReadStream(
-        join(process.cwd(), `/pictures/${query.picName}`),
+        join(process.cwd(), `${this.commonUrl}${query.picName}`),
       );
       res.setHeader('Content-Type', 'application/octet-stream');
       res.setHeader(
@@ -41,5 +44,15 @@ export class PictureService {
 				result:0
 			})
     }
+  }
+  async getPicPage({page,size}){
+    const pics = await this.pictureRepository.find({
+      skip:page-1,
+      take:size,
+      order:{
+        id:'ASC'
+      }
+    })
+    return pics
   }
 }

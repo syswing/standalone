@@ -43,6 +43,6 @@ export class Adventure {
 	/**
 	 * 是否发布
 	*/
-	@Column('boolean',{default:false})
+	@Column('boolean',{default:true})
 	isPublish:boolean;
 }

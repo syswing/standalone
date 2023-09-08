@@ -20,9 +20,9 @@ export class AdventureController {
 	@Post('add')
 	@ApiQuery({ name:'content',type:'string',required:true})
 	@ApiQuery({ name:'name',type:'string',required:true})
-	@ApiQuery({ name:'tag',type:'string',required:true})
-	add(@Query() query){
-		return this.adventureService.writeMd(query)
+	@ApiQuery({ name:'tag',type:'string',required:true,description:'传id用逗号分隔'})
+	add(@Body() body){
+		return this.adventureService.writeMd(body)
 	}
 
 	// 删除md
@@ -45,10 +45,17 @@ export class AdventureController {
 	// 点赞
 	@Post('zan')
 	@ApiQuery({ name:'id',type:'string',required:true})
-	zan(@Query() query){
-		return this.adventureService.zan(query)
+	zan(@Body() body){
+		return this.adventureService.zan(body)
 	}
 
+	// 管理端列表
+	@Get('adminList')
+	@ApiQuery({ name:'page',type:'string',required:true})
+	@ApiQuery({ name:'size',type:'string',required:true})
+	adminList(@Query() query){
+		return this.adventureService.adminList(query)
+	}
 	
 }
 

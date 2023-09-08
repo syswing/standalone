@@ -9,4 +9,7 @@ export class Picture {
 	@Column()
 	path:string;
 
+	// 文件名称
+	@Column({default:''})
+	name:string;
 }

@@ -19,7 +19,7 @@ export class AdventureService {
 
 	async adventureList({page,size}){
 		const list = await this.adventureRepository.find({
-			skip:page - 1,
+			skip:(page - 1)*size,
 			take:size,
 			order:{
 				id:'ASC'
@@ -30,10 +30,23 @@ export class AdventureService {
 		})
 		list.forEach((item:any) => {
 			item.md = md.use(require("markdown-it-anchor")).render(item.content)
+			const tocContent = md.render(toc(item.content).content)
+			item.tocContent = tocContent
 		})
 		return list
 	}
 	
+	async adminList({page,size}){
+		const list = await this.adventureRepository.find({
+			skip:(page - 1)*size,
+			take:size,
+			order:{
+				id:'ASC'
+			},
+		})
+		return list
+	}
+
 	async writeMd(query){
 		const ad = new Adventure()
 		ad.content = query.content
