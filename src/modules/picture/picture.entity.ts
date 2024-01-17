@@ -12,4 +12,12 @@ export class Picture {
 	// 文件名称
 	@Column({default:''})
 	name:string;
+
+	// 关联adventure_id主键
+	@Column({default:''})
+	adventure_id:string;
+
+	// 描述
+	@Column({default:''})
+	description:string;
 }

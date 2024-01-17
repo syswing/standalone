@@ -12,7 +12,7 @@ export class PictureService {
     private pictureRepository: Repository<Picture>,
   ) {}
   
-  private commonUrl = './public/picture/'
+  private commonUrl = './public/pictures/'
   
   async uploadPic(pic) {
     const picture = new Picture();
@@ -20,7 +20,7 @@ export class PictureService {
     picture.name = pic.originalname
     await this.pictureRepository.save(picture);
     await writeFile(`${this.commonUrl}${pic.originalname}`, pic.buffer);
-    return '保存成功';
+    return pic.originalname;
   }
   async getPic(query, res) {
     const pic = await this.pictureRepository.findOne({

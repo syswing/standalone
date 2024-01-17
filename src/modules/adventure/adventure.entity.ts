@@ -45,4 +45,7 @@ export class Adventure {
 	*/
 	@Column('boolean',{default:true})
 	isPublish:boolean;
+
+	@Column('int',{default:0})
+	main_pic_id:number;
 }

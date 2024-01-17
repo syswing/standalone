@@ -52,6 +52,7 @@ export class AdventureService {
 		ad.content = query.content
 		ad.name = query.name
 		ad.tag = query.tag
+		ad.main_pic_id = query.mainPicId
 		return await this.adventureRepository.save(ad)
 	}
 
@@ -73,6 +74,7 @@ export class AdventureService {
 		targetMd.content = query.content
 		targetMd.name = query.name
 		targetMd.tag = query.tag
+		targetMd.main_pic_id = query.mainPicId
 		return await this.adventureRepository.save(targetMd)
 	}
 	async zan(query){

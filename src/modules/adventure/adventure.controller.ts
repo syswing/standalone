@@ -21,6 +21,7 @@ export class AdventureController {
 	@ApiQuery({ name:'content',type:'string',required:true})
 	@ApiQuery({ name:'name',type:'string',required:true})
 	@ApiQuery({ name:'tag',type:'string',required:true,description:'传id用逗号分隔'})
+	@ApiQuery({ name:'mainPicId',type:'string'})
 	add(@Body() body){
 		return this.adventureService.writeMd(body)
 	}
@@ -38,8 +39,9 @@ export class AdventureController {
 	@ApiQuery({ name:'content',type:'string'})
 	@ApiQuery({ name:'name',type:'string'})
 	@ApiQuery({ name:'tag',type:'string'})
-	update(@Query() query){
-		return this.adventureService.updateMd(query)
+	@ApiQuery({ name:'mainPicId',type:'string'})
+	update(@Body() body){
+		return this.adventureService.updateMd(body)
 	}
 
 	// 点赞
