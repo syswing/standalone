@@ -20,10 +20,10 @@ jobs:
       name: ssh-job
       
       with:
-        host: ${{ secrets.HOST }}
-        key: ${{ secrets.KEY }}
-        user: ${{ secrets.USER }}
-        command: mkdir $DIRECTORY
+        host: ${{ secrets.DEPLOY_HOST }}
+        password: ${{ secrets.DEPLOY_PASSWORD }}
+        user: ${{ secrets.DEPLOY_USER }}
+        command: mkdir test
       
     - run: echo 'I successfully done'
     
