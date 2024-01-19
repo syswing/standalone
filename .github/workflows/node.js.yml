@@ -16,15 +16,15 @@ jobs:
             
     steps:
     - uses: actions/checkout@v3
-    - run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}
-    - uses: nekiro/ssh-job@v1.0.5
-      name: ssh-job
-      
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_USER }}
         password: ${{ secrets.DEPLOY_PASSWORD }}
-        user: ${{ secrets.DEPLOY_USER }}
-        command: mkdir test
+        port: 22
+        script: whoami
+
       
     - run: echo 'I successfully done'
     
