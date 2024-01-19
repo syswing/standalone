@@ -14,7 +14,12 @@ jobs:
         username: ${{ secrets.DEPLOY_USER }}
         password: ${{ secrets.DEPLOY_PASSWORD }}
         port: 22
-        script: ./setup_standalone.sh
+        script_stop: true
+        script: |
+          rm -rf standalone
+          git clone https://syswing:${{ secrets.DEPLOY_TOKEN }}@github.com/syswing/standalone.git standalone
+          ./setup_standalone.sh
+          
     - run: echo 'I successfully done'
     
     
