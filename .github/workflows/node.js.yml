@@ -15,8 +15,8 @@ jobs:
         password: ${{ secrets.DEPLOY_PASSWORD }}
         port: 22
         script: |
-          cd standalone
-          git pull
+          rm -rf standalone
+          git clone https://syswing:${{ secrets.DEPLOY_TOKEN }}@github.com/standalone.git standalone
           npm install 
           npm run build:docker
           npm run start:docker
