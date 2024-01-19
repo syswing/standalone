@@ -18,7 +18,7 @@ jobs:
         script: |
           sudo rm -rf standalone
           git clone https://syswing:${{ secrets.DEPLOY_TOKEN }}@github.com/syswing/standalone.git standalone
-          ./setup_standalone.sh
+          sudo ./setup_standalone.sh
           
     - run: echo 'I successfully done'
     
