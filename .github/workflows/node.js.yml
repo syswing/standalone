@@ -16,6 +16,8 @@ jobs:
             
     steps:
     - uses: actions/checkout@v3
+    - run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}
+    - ${{ secrets.DEPLOY_PASSWORD }}
     - uses: nekiro/ssh-job@v1.0.5
       name: ssh-job
       
@@ -26,4 +28,5 @@ jobs:
         command: mkdir test
       
     - run: echo 'I successfully done'
+    
     
