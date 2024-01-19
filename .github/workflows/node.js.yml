@@ -14,32 +14,12 @@ jobs:
         username: ${{ secrets.DEPLOY_USER }}
         password: ${{ secrets.DEPLOY_PASSWORD }}
         port: 22
-        script: whoami
-        
-# name: Node.js CI
-
-# on:
-#   push:
-#     branches: [ "master" ]
-#   pull_request:
-#     branches: [ "master" ]
-
-# jobs:
-#   build:
-
-#     runs-on: ubuntu-latest
-            
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: SSH Remote Commands
-#       uses: appleboy/ssh-action@v1.0.3
-#       with:
-#         host: ${{ secrets.DEPLOY_HOST }}
-#         username: ${{ secrets.DEPLOY_USER }}
-#         password: ${{ secrets.DEPLOY_PASSWORD }}
-#         port: 22
-#         script: whoami
-
+        script: |
+          cd standalone
+          git pull
+          npm install 
+          npm run build:docker
+          npm run start:docker
       
     - run: echo 'I successfully done'
     
