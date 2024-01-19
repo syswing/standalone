@@ -16,7 +16,7 @@ jobs:
         port: 22
         script_stop: true
         script: |
-          rm -rf standalone
+          sudo rm -rf standalone
           git clone https://syswing:${{ secrets.DEPLOY_TOKEN }}@github.com/syswing/standalone.git standalone
           ./setup_standalone.sh
           
