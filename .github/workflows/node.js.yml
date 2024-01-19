@@ -1,22 +1,13 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
-
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
+name: remote ssh command
+on: [push]
 jobs:
   build:
-
+    name: Build
     runs-on: ubuntu-latest
-            
     steps:
-    - uses: actions/checkout@v3
-    - name: SSH Remote Commands
+    - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.DEPLOY_HOST }}
@@ -24,6 +15,30 @@ jobs:
         password: ${{ secrets.DEPLOY_PASSWORD }}
         port: 22
         script: whoami
+        
+# name: Node.js CI
+
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+            
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: SSH Remote Commands
+#       uses: appleboy/ssh-action@v1.0.3
+#       with:
+#         host: ${{ secrets.DEPLOY_HOST }}
+#         username: ${{ secrets.DEPLOY_USER }}
+#         password: ${{ secrets.DEPLOY_PASSWORD }}
+#         port: 22
+#         script: whoami
 
       
     - run: echo 'I successfully done'
