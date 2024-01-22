@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:18.3.0
 
 ENV NODE_ENV=production
 
