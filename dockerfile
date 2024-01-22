@@ -18,8 +18,6 @@ RUN npm install -g webpack
 
 RUN npm install -g webpack-cli
 
-RUN npm install
-
 RUN npm run build
 
 EXPOSE 3000
