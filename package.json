@@ -47,6 +47,7 @@
     "markdown-it-toc-done-right": "^4.2.0",
     "markdown-toc": "^1.2.0",
     "moment": "^2.29.4",
+    "mysql": "^2.18.1",
     "NeteaseCloudMusicApi": "^4.6.6",
     "node-mirai-sdk": "^0.3.4",
     "pg": "^8.8.0",

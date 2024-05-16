@@ -59,5 +59,11 @@ export class AdventureController {
 		return this.adventureService.adminList(query)
 	}
 	
+	// 发布
+	@Get('publish')
+	@ApiQuery({ name:'id',type:'string',required:true})
+	publish(@Query() query){
+		return this.adventureService.publish(query)
+	}
 }
 

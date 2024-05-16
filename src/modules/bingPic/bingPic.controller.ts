@@ -9,7 +9,7 @@ import { ResultInterceptor } from "src/interceptors/resultInterceptor.intercepto
 export class BingPicController {
 	constructor(private readonly bingPicService: BingPicService) {}
 
-	@Get('bingPic')
+ 	@Get('bingPic')
 	bingPic(){
 		return this.bingPicService.getPicture()
 	}

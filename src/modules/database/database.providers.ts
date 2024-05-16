@@ -11,7 +11,7 @@ export const databaseProviders = [
         port: process.env.DATABASE_PORT as any,
         username: process.env.DATABASE_USERNAME,
         password: process.env.DATABASE_PASSWORD,
-        database: process.env.DATABASE_TYPE,
+        database: process.env.DATABASE_NAME,
         // 建议不开启
         synchronize: process.env.ENABLE_SYNCHRONIZE as any,
         // 所有entity加入

@@ -13,6 +13,7 @@ export class Adventure {
 	@UpdateDateColumn()
 	update_at:string;
 
+	
 	@Column()
   name: string;
   
@@ -41,9 +42,9 @@ export class Adventure {
   tag: string;
 
 	/**
-	 * 是否发布
+	 * 是否发布 是否是草稿
 	*/
-	@Column('boolean',{default:true})
+	@Column('boolean',{default:false})
 	isPublish:boolean;
 
 	@Column('int',{default:0})
