@@ -55,4 +55,12 @@ export class PictureService {
     })
     return pics
   }
+  async deletePic(pic){
+    const targetPic = await this.pictureRepository.findOne({
+      where:{
+        id:pic.id
+      }
+    })
+    return await this.pictureRepository.remove(targetPic)
+  }
 }

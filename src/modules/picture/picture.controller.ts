@@ -40,5 +40,10 @@ export class PictureController {
 	getPicPage(@Query() query){
 		return this.pictureService.getPicPage(query)
 	}
-
+	// 库中删除
+	@Get('deletePic')
+	@ApiQuery({ name:'id',type:'string',required:true})
+	deletePic(@Query() query){
+		return this.pictureService.deletePic(query)
+	}
 }
