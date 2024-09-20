@@ -65,5 +65,21 @@ export class AdventureController {
 	publish(@Query() query){
 		return this.adventureService.publish(query)
 	}
+
+	// 根据日期查询 yyy-mm-dd
+	@Get('dayList')
+	@ApiQuery({ name:'date',type:'string',required:true})
+	dayList(@Query() query){
+		return this.adventureService.dayList(query)
+	}
+
+	// 根据标签查询
+	@Get('tagList')
+	@ApiQuery({ name:'tag',type:'string',required:true,description:'传id用逗号分隔'})
+	tagList(@Query() query){
+		return this.adventureService.tagList(query)
+	}
+	
+
 }
 

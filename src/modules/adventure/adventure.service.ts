@@ -4,9 +4,10 @@ import { readFile, writeFile } from 'node:fs/promises';
 import * as MarkdownIt from 'markdown-it';
 import * as path from 'path';
 import * as toc from 'markdown-toc';
-import { Repository } from 'typeorm';
+import { Repository,Between,In } from 'typeorm';
 import { Adventure } from './adventure.entity';
 import { Tag } from '../tags/tag.entity';
+import { addDays } from 'date-fns'
 
 const md = MarkdownIt();
 
@@ -95,4 +96,26 @@ export class AdventureService {
     targetMd.isPublish = true;
     return await this.adventureRepository.save(targetMd);
   }
+
+	async dayList(query){
+		// 根据日期查询
+		const { date } = query;
+		const data = await this.adventureRepository.find({
+			where:{
+				create_at:Between(new Date(date),addDays(new Date(date),1))
+			}
+		})
+		return data
+	}
+	async tagList(query){
+		// 根据标签查询
+		const {tag} = query
+		const tags = tag.split(',')
+		const data = await this.adventureRepository.find({
+			where:{
+				tag:In(tags)
+			}
+		})
+		return data
+	}
 }

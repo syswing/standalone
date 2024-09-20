@@ -1,10 +1,9 @@
 # 个人nest后台
 ## swagger
 
-访问 **/api**
+/api
 
-关联系统 
+能力
 
-qq-music-api
-
+播放器 天气 图片存储 markdown存储
 
