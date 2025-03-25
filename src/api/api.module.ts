@@ -14,7 +14,7 @@ import { TagModule } from 'src/modules/tags/tag.module';
 import { BingPicModule } from 'src/modules/bingPic/bingPic.module';
 import { WeatherModule } from 'src/modules/weather/weather.module';
 import { RouteModule } from 'src/modules/routes/routes.module';
-
+import { OcrModule } from 'src/modules/ocr/ocr.module';
 const apiModules = [
   CatsModule,
   AdventureModule,
@@ -28,6 +28,7 @@ const apiModules = [
   BingPicModule,
   WeatherModule,
   RouteModule,
+  OcrModule,
 ]
 @Module({
   imports: apiModules,

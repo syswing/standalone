@@ -7,7 +7,7 @@ import { RouteService } from './routes.service';
 @Module({
 	imports:[DatabaseModule],
 	providers:[RouteService,...RouteProviders],
-	controllers:[RouteController],
+  controllers: [RouteController],
 })
 export class RouteModule {}
 
