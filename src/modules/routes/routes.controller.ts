@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseInterceptors } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { RouteService } from './routes.service';
 import { Route } from './routes.entity';
+import { ResultInterceptor } from "src/interceptors/resultInterceptor.interceptor";
 
 @ApiTags('routes')
 @Controller('routes')
+@UseInterceptors(ResultInterceptor)
 export class RouteController {
   constructor(private readonly routeService: RouteService) {}
 
