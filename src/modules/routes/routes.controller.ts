@@ -23,7 +23,7 @@ export class RouteController {
     return await this.routeService.list();
   }
 
-  @Post('remove')
+  @Post('delete')
   @ApiOperation({ summary: '删除路由' })
   @ApiBody({
     schema: {
@@ -35,8 +35,24 @@ export class RouteController {
       },
     },
   })
-  async remove(@Body('id') id: number) {
+  async delete(@Body('id') id: number) {
     return await this.routeService.delRoute({ id });
+  }
+
+  @Post('remove')
+  @ApiOperation({ summary: '移除路由' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        id: {
+          type: 'string',
+        },
+      },
+    },
+  })
+  async remove(@Body('id') id: number) {
+    return await this.routeService.removeRoute({ id });
   }
 
   @Post('update')

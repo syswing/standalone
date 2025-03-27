@@ -35,6 +35,16 @@ export class RouteService {
     return await this.routeRepository.remove(targetRoute);
   }
 
+  async removeRoute(body) {
+    let targetRoute = await this.routeRepository.findOne({  
+      where: {
+        id: body.id,
+      },
+    });
+    targetRoute.isDeleted = true;
+    return await this.routeRepository.save(targetRoute);
+  }
+
   async editRoute(body) {
     let targetRoute = await this.routeRepository.findOne({
       where: {
