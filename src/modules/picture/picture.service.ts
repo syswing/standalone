@@ -7,12 +7,17 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class PictureService {
+
+  private commonUrl = './public/pictures/'
+
   constructor(
     @Inject('PICTURE_REPOSITORY')
     private pictureRepository: Repository<Picture>,
-  ) {}
-  
-  private commonUrl = './public/pictures/'
+  ) {
+    if (!fs.existsSync(this.commonUrl)) {
+      fs.mkdirSync(this.commonUrl, { recursive: true });
+    }
+  }
   
   async uploadPic(pic) {
     const picture = new Picture();
