@@ -1,52 +1,53 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 @Entity()
 export class Adventure {
-	@PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
-	@Column('text')
+  @Column('text')
   content: string;
 
-	@CreateDateColumn()
-	create_at:Date;
+  @CreateDateColumn()
+  create_at: Date;
 
-	@UpdateDateColumn()
-	update_at:Date;
+  @UpdateDateColumn()
+  update_at: Date;
 
-	
-	@Column()
+  @Column()
   name: string;
-  
-	/**
-	 * 回复列表，逗号分隔
-	*/
-	@Column({nullable:true})
-	reply_comment:string;
 
-	/**
-	 * 顶
-	*/
-	@Column('int',{default:0})
-	up:number;
+  /**
+   * 回复列表，逗号分隔
+   */
+  @Column({ nullable: true })
+  reply_comment: string;
 
-	/**
-	 * 踩
-	*/
-	@Column('int',{default:0})
-	down:number;
+  /**
+   * 顶
+   */
+  @Column('int', { default: 0 })
+  up: number;
 
-	/**
-	 * 标签，逗号分隔
-	*/
-	@Column({nullable:true})
+  /**
+   * 踩
+   */
+  @Column('int', { default: 0 })
+  down: number;
+
+  /**
+   * 标签，逗号分隔
+   */
+  @Column({ nullable: true })
   tag: string;
 
-	/**
-	 * 是否发布 是否是草稿
-	*/
-	@Column('boolean',{default:false})
-	isPublish:boolean;
+  /**
+   * 是否发布 是否是草稿
+   */
+  @Column('boolean', { default: false })
+  isPublish: boolean;
 
-	@Column('int',{default:0})
-	main_pic_id:number;
+  @Column('int', { default: 0 })
+  main_pic_id: number;
+  @Column('boolean', { default: false })
+  isDelete: boolean;
 }

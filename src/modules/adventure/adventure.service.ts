@@ -63,7 +63,8 @@ export class AdventureService {
         id: query.id,
       },
     });
-    return await this.adventureRepository.remove(targetMd);
+    targetMd.isDelete = true;
+    return await this.adventureRepository.save(targetMd);
   }
 
   async updateMd(query) {
@@ -94,6 +95,16 @@ export class AdventureService {
       },
     });
     targetMd.isPublish = true;
+    return await this.adventureRepository.save(targetMd);
+  }
+
+  async unpublish(query) {
+    const targetMd = await this.adventureRepository.findOne({
+      where: {
+        id: query.id,
+      },
+    });
+    targetMd.isPublish = false;
     return await this.adventureRepository.save(targetMd);
   }
 

@@ -68,4 +68,15 @@ export class PictureService {
     })
     return await this.pictureRepository.remove(targetPic)
   }
+
+  async updatePic(id,params){
+    const targetPic = await this.pictureRepository.findOne({
+      where:{
+        id:id
+      }
+    })
+    targetPic.description = params.description;
+    targetPic.adventure_id = params.adventure_id;
+    return this.pictureRepository.save(targetPic);
+  }
 }

@@ -56,4 +56,26 @@ export class PictureController {
   deletePic(@Query() query) {
     return this.pictureService.deletePic(query);
   }
+
+  @Post('update')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        description: {
+          type: 'string',
+        },
+        id: {
+          type: 'string',
+        },
+        adventure_id: {
+          type: 'string', 
+        }
+      },
+    },
+  })
+  update(@Body() body) {
+    const {id,...rest} = body
+    return this.pictureService.updatePic(id,rest);
+  }
 }
