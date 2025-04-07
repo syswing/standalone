@@ -38,6 +38,13 @@ export class PictureService {
         `attachment;filename=${query.picName}`,
       );
       file.pipe(res);
+      file.on('error', (err) => {
+        console.error('File read error:', err);
+        res.send({
+          data:"未找到文件",
+          result:0
+        })
+      })
     } else {
 			res.send({
 				data:"未找到文件",
