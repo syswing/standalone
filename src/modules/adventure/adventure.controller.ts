@@ -66,6 +66,13 @@ export class AdventureController {
 		return this.adventureService.publish(query)
 	}
 
+	// 发布
+	@Get('unpublish')
+	@ApiQuery({ name:'id',type:'string',required:true})
+	unpublish(@Query() query){
+		return this.adventureService.unpublish(query)
+	}
+
 	// 根据日期查询 yyy-mm-dd
 	@Get('dayList')
 	@ApiQuery({ name:'date',type:'string',required:true})
