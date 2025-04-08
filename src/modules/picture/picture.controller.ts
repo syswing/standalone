@@ -43,6 +43,11 @@ export class PictureController {
   getPic(@Query() query, @Res() res) {
     return this.pictureService.getPic(query, res);
   }
+  @Get('getPicById')
+  @ApiQuery({ name: 'id', type: 'string', required: true })
+  getPicById(@Query() query, @Res() res) {
+    return this.pictureService.getPicById(query.id, res);
+  }
   // 获取列表
   @Get('getPicPage')
   @ApiQuery({ name: 'page', type: 'string', required: true })

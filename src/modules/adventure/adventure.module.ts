@@ -8,5 +8,6 @@ import { AdventureService } from './adventure.service';
 	imports:[DatabaseModule],
   providers: [AdventureService,...AdventureProviders],
   controllers: [AdventureController],
+  exports: [AdventureService]
 })
 export class AdventureModule {}

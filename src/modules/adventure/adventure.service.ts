@@ -8,6 +8,7 @@ import { Repository,Between,In } from 'typeorm';
 import { Adventure } from './adventure.entity';
 import { Tag } from '../tags/tag.entity';
 import { addDays } from 'date-fns'
+import { Picture } from '../picture/picture.entity';
 
 const md = MarkdownIt();
 

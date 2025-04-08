@@ -4,25 +4,26 @@ import { join } from 'path';
 import { writeFile } from 'node:fs/promises';
 import { Picture } from './picture.entity';
 import { Repository } from 'typeorm';
+import { AdventureService } from '../adventure/adventure.service';
 
 @Injectable()
 export class PictureService {
-
-  private commonUrl = './public/pictures/'
+  private commonUrl = './public/pictures/';
 
   constructor(
     @Inject('PICTURE_REPOSITORY')
     private pictureRepository: Repository<Picture>,
+    private adventureService: AdventureService
   ) {
     if (!fs.existsSync(this.commonUrl)) {
       fs.mkdirSync(this.commonUrl, { recursive: true });
     }
   }
-  
+
   async uploadPic(pic) {
     const picture = new Picture();
     picture.path = `${this.commonUrl}${pic.originalname}`;
-    picture.name = pic.originalname
+    picture.name = pic.originalname;
     await this.pictureRepository.save(picture);
     await writeFile(`${this.commonUrl}${pic.originalname}`, pic.buffer);
     return pic.originalname;
@@ -34,56 +35,84 @@ export class PictureService {
       },
     });
     if (pic) {
-      const file = fs.createReadStream(
-        join(process.cwd(), `${this.commonUrl}${query.picName}`),
-      );
+      const file = fs.createReadStream(join(process.cwd(), `${this.commonUrl}${query.picName}`));
       res.setHeader('Content-Type', 'application/octet-stream');
-      res.setHeader(
-        'Content-Disposition',
-        `attachment;filename=${query.picName}`,
-      );
+      res.setHeader('Content-Disposition', `attachment;filename=${query.picName}`);
       file.pipe(res);
       file.on('error', (err) => {
         console.error('File read error:', err);
         res.send({
-          data:"未找到文件",
-          result:0
-        })
-      })
+          data: '未找到文件',
+          result: 0,
+        });
+      });
     } else {
-			res.send({
-				data:"未找到文件",
-				result:0
-			})
+      res.send({
+        data: '未找到文件',
+        result: 0,
+      });
     }
   }
-  async getPicPage({page,size}){
-    const pics = await this.pictureRepository.find({
-      skip:page-1,
-      take:size,
-      order:{
-        id:'ASC'
-      }
-    })
-    return pics
-  }
-  async deletePic(pic){
-    const targetPic = await this.pictureRepository.findOne({
-      where:{
-        id:pic.id
-      }
-    })
-    return await this.pictureRepository.remove(targetPic)
+
+  async getPicById(id, res) {
+    const pic = await this.pictureRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+    if (pic) {
+      const file = fs.createReadStream(join(process.cwd(), `${this.commonUrl}${pic.name}`));
+      res.setHeader('Content-Type', 'application/octet-stream');
+      res.setHeader('Content-Disposition', `attachment;filename=${pic.name}`);
+      file.pipe(res);
+      file.on('error', (err) => {
+        console.error('File read error:', err);
+        res.send({
+          data: '未找到文件',
+          result: 0,
+        });
+      });
+    } else {
+      res.send({
+        data: '未找到文件',
+        result: 0,
+      });
+    }
   }
 
-  async updatePic(id,params){
+  async getPicPage({ page, size }) {
+    const pics = await this.pictureRepository.find({
+      skip: page - 1,
+      take: size,
+      order: {
+        id: 'ASC',
+      },
+    });
+    return pics;
+  }
+  async deletePic(pic) {
     const targetPic = await this.pictureRepository.findOne({
-      where:{
-        id:id
-      }
-    })
+      where: {
+        id: pic.id,
+      },
+    });
+    return await this.pictureRepository.remove(targetPic);
+  }
+
+  async updatePic(id, params) {
+    const targetPic = await this.pictureRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
     targetPic.description = params.description;
     targetPic.adventure_id = params.adventure_id;
+    if (params.adventure_id) {
+      await this.adventureService.updateMd({
+        id: params.adventure_id,
+        mainPicId: targetPic.id,
+      });
+    }
     return this.pictureRepository.save(targetPic);
   }
 }
