@@ -130,4 +130,20 @@ export class AdventureService {
 		})
 		return data
 	}
+
+  async visitMd(query){
+    // 根据id查询
+    const {id} = query
+    const data = await this.adventureRepository.findOne({
+      where:{
+        id:id
+      }
+    })
+    if(!data){
+      throw new HttpException('文章不存在',HttpStatus.BAD_REQUEST)
+    }
+    data.visit++
+    await this.adventureRepository.save(data)
+    return data
+  }
 }

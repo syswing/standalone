@@ -88,5 +88,11 @@ export class AdventureController {
 	}
 	
 
+	@Get('visitMd')
+	@ApiQuery({ name:'id',type:'string',required:true})
+	visitMd(@Query() query){
+		return this.adventureService.visitMd(query)
+	}
+
 }
 

@@ -50,4 +50,11 @@ export class Adventure {
   main_pic_id: number;
   @Column('boolean', { default: false })
   isDelete: boolean;
+
+
+   /**
+   * 阅读量
+   */
+   @Column('int', { default: 0 })
+   visit: number;
 }
