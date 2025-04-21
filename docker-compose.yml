@@ -1,0 +1,17 @@
+
+services:
+  app:
+    image: node:18.3.0
+    working_dir: /standalone
+    build:
+      context: .
+      dockerfile: Dockerfile  # Specify the Dockerfile to use for building the image
+    container_name: standalone-1.0
+    ports:
+      - "3000:3000"  # Map host port 8080 to container port 80
+    network_mode: host
+    volumes:
+      - .:/standalone  # Mount local directory to container
+    command: node ./dist/main.js  # Command to run your application
+
+
