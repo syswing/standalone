@@ -17,12 +17,6 @@ export class Adventure {
   name: string;
 
   /**
-   * 回复列表，逗号分隔
-   */
-  @Column({ nullable: true })
-  reply_comment: string;
-
-  /**
    * 顶
    */
   @Column('int', { default: 0 })
@@ -57,4 +51,7 @@ export class Adventure {
    */
    @Column('int', { default: 0 })
    visit: number;
+
+
+   commentCount?: number;
 }

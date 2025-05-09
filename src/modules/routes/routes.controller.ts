@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseInterceptors, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { RouteService } from './routes.service';
 import { Route } from './routes.entity';
@@ -19,8 +19,8 @@ export class RouteController {
 
   @Get('list')
   @ApiOperation({ summary: '获取所有路由' })
-  async findAll() {
-    return await this.routeService.list();
+  async findAll(@Query() query) {
+    return await this.routeService.list(query);
   }
 
   @Post('delete')

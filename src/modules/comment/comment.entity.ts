@@ -24,7 +24,9 @@ export class Comment {
 
 	@UpdateDateColumn()
 	update_at:string;
-
+	// 默认为文章id 或者 留言id
 	@Column('int',{default:0})
 	reply:number;
+
+	adventureName: string;
 }

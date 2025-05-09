@@ -22,8 +22,11 @@ export class RouteService {
     return await this.routeRepository.save(route);
   }
 
-  async list() {
-    return await this.routeRepository.find();
+  async list({ page, size }) {
+    return await this.routeRepository.find({
+      skip: (page - 1) * size,
+      take: size,
+    });
   }
 
   async delRoute(body) {

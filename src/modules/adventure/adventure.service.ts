@@ -9,7 +9,7 @@ import { Adventure } from './adventure.entity';
 import { Tag } from '../tags/tag.entity';
 import { addDays } from 'date-fns'
 import { Picture } from '../picture/picture.entity';
-
+import { Comment } from '../comment/comment.entity';
 const md = MarkdownIt();
 
 @Injectable()
@@ -17,6 +17,9 @@ export class AdventureService {
   constructor(
     @Inject('ADVENTURE_REPOSITORY')
     private adventureRepository: Repository<Adventure>,
+
+    @Inject('COMMENT_REPOSITORY')
+    private commentRepository:Repository<Comment>
   ) {}
 
   async adventureList({ page, size }) {
@@ -30,7 +33,12 @@ export class AdventureService {
         isPublish: true,
       },
     });
-    list.forEach((item: any) => {
+
+    for (let i = 0; i < list.length; i++) {
+      list[i].commentCount  = await this.commentRepository.count({ where: { reply: list[i].id } });
+    }
+
+    list.forEach( (item: any) => {
       item.md = md.use(require('markdown-it-anchor')).render(item.content);
       const tocContent = md.render(toc(item.content).content);
       item.tocContent = tocContent;
